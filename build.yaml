@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      freezed_to_objectbox|objectbox_entity:
+        generate_for:
+          - lib/models/*.dart
+
+builders:
+  objectbox_entity:
+    import: "package:freezed_to_objectbox/objectbox_entity_builder.dart"
+    builder_factories: ["objectBoxEntityBuilder"]
+    build_extensions: {".dart": [".objectbox_entity.dart"]}
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen|combining_builder"]
